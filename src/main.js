@@ -1,36 +1,55 @@
 const puppeteer = require("puppeteer");
 
-async function webCrawler(targetUrl){
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto(targetUrl);
+async function registerLPU(targetUrl){
+    global.browser = await puppeteer.launch();
+    global.page = await browser.newPage();
+    await page.setViewport({
+        width: 1000,
+        height: 1800
+    });
+    
+    await page.goto("https://uc.magister.net");
 
     console.log("loging in");
     //username
-    await page.waitForSelector("#username");
-    await page.type("#username", "417593");
-    await page.click("#username_submit");
+    await global.page.waitForSelector("#username");
+    await global.page.type("#username", "417593");
+    await global.page.click("#username_submit");
     //password
-    await page.waitForSelector("#passwordInput");
-    await page.type("#passwordInput", "Chipy-Chipy1");
-    await page.click("#submitButton");
+    await global.page.waitForSelector("#passwordInput");
+    await global.page.type("#passwordInput", "Chipy-Chipy1");
+    await global.page.click("#submitButton");
     
     console.log("loading magister...");
-    await page.waitForSelector("#menu-agenda");
-    await page.click("#menu-agenda");
+    await global.page.waitForSelector("#menu-agenda");
+    await global.page.click("#menu-agenda");
 
     console.log("loading calender...");
-    await page.waitForSelector("#afsprakenLijst");
+    await global.page.waitForSelector("#afsprakenLijst");
 
+    //clicking first lpu
+    console.log("clicking on first lpu");
+    await clickLPU(680);
 
-    const element = await page.$(".head-bar h1");
-    const txt = await (await element.getProperty('textContent')).jsonValue();
-    console.log(txt);
+    // const element = await page.$(".head-bar h1 span");
+    // const txt = await (await element.getProperty('textContent')).jsonValue();
+    // console.log(await page.content());
 
-    // let cur_url = await page.url();
-    // console.log(cur_url);
+    let cur_url = await global.page.url();
+    console.log(cur_url);
 
     browser.close();
 }
+async function clickLPU(yPos){
+    while(await global.page.url() === "https://uc.magister.net/magister/#/agenda"){
+        await global.page.mouse.click(415, yPos);
+        await global.page.waitForTimeout(800);
+        await global.page.mouse.click(415, yPos);
+        await global.page.waitForTimeout(800);
+        await global.page.mouse.click(415, yPos);
 
-webCrawler("https://uc.magister.net");
+        await global.page.waitForTimeout(500);
+    }
+}
+
+registerLPU();
