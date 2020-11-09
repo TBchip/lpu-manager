@@ -16,6 +16,11 @@ async function registerLPUsAtTime(targetDay, targetHour, targetMinute){
         await sleep(60000);
     }
 }
+function sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}  
 
 
 LPUYPositions = [264, 776, 968, 1224, 1288, 1320];
