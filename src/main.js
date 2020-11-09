@@ -1,3 +1,4 @@
+const { registerLPUs } = require("./register")
 
 // LPUYPositions = [264, 776, 968, 1224, 1288, 1320];
 LPUYPositions = [680];
