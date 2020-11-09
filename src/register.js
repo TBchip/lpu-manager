@@ -75,3 +75,4 @@ async function getElementRect(page, element){
     return rect;
 }
 
+module.exports.registerLPUs = registerLPUs;
