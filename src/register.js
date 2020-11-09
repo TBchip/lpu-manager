@@ -36,14 +36,6 @@ async function registerLPUs(LPUYPositions){
     console.log();
 
     console.log("Registered for all lpu's")
-    
-
-    // const element = await page.$(".head-bar h1 span");
-    // const txt = await (await element.getProperty('textContent')).jsonValue();
-    // console.log(await page.content());
-
-    // let cur_url = await page.url();
-    // console.log(cur_url);
 
     browser.close();
 }
