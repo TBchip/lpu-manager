@@ -8,10 +8,16 @@ async function registerLPUsAtTime(targetDay, targetHour, targetMinute){
         let hour = date.getHours();
         let minute = date.getMinutes();
         
+        console.log(`Checking time: ${day}, ${hour}, ${minute}`);
         if(day === targetDay && hour === targetHour && minute === targetMinute){
+            console.log("Correct time, registering for LPUs");
+            console.log();
+            console.log();
             registerLPUs(LPUYPositions);
         }
-        console.log(minute);
+        else
+            console.log("Wrong time, sleeping for 1 minute");
+        console.log();
 
         await sleep(60000);
     }
