@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const magisterCredentials = require("./magisterCredentials.json")
 
 async function registerLPUs(LPUYPositions){
     const browser = await puppeteer.launch();
@@ -12,11 +13,11 @@ async function registerLPUs(LPUYPositions){
     console.log("Loging in");
     //username
     await page.waitForSelector("#username");
-    await page.type("#username", "417593");
+    await page.type("#username", magisterCredentials.username);
     await page.click("#username_submit");
     //password
     await page.waitForSelector("#passwordInput");
-    await page.type("#passwordInput", "Chipy-Chipy1");
+    await page.type("#passwordInput", magisterCredentials.password);
     await page.click("#submitButton");
     
     await page.waitForSelector("#menu-agenda");
