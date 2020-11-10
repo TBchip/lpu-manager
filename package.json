@@ -1,8 +1,8 @@
 {
-  "name": "test",
+  "name": "lpu-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "test.js",
+  "main": "src/main.js",
   "dependencies": {
     "puppeteer": "^5.4.1"
   },
