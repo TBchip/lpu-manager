@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 const magisterCredentials = require("./magisterCredentials.json")
-a
+
 async function registerLPUs(LPUYPositions){
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
