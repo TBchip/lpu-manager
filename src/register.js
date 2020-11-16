@@ -28,7 +28,7 @@ async function registerLPUs(LPUYPositions){
     //clicking first lpu
     for(let i = 0; i < LPUYPositions.length; i++){
         console.log();
-        console.log(`Loadin ${i+1}th lpu register page`);
+        console.log(`Loading ${i+1}th lpu register page`);
         await openLPURegisterPage(page, LPUYPositions[i]);
     
         console.log(`Registering for the ${i+1}th lpu`)
