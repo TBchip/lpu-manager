@@ -2,43 +2,49 @@ const puppeteer = require("puppeteer");
 const magisterCredentials = require("./magisterCredentials.json")
 
 async function registerLPUs(LPUYPositions){
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setViewport({
-        width: 1000,
-        height: 1800
-    });
-    await page.goto("https://uc.magister.net/");
+    try{
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.setViewport({
+            width: 1000,
+            height: 1800
+        });
+        await page.goto("https://uc.magister.net/");
 
-    console.log("Loging in");
-    //username
-    await page.waitForSelector("#username");
-    await page.type("#username", magisterCredentials.username);
-    await page.click("#username_submit");
-    //password
-    await page.waitForSelector("#passwordInput");
-    await page.type("#passwordInput", magisterCredentials.password);
-    await page.click("#submitButton");
-    
-    await page.waitForSelector("#menu-agenda");
-    await page.click("#menu-agenda");
+        console.log("Loging in");
+        //username
+        await page.waitForSelector("#username");
+        await page.type("#username", magisterCredentials.username);
+        await page.click("#username_submit");
+        //password
+        await page.waitForSelector("#passwordInput");
+        await page.type("#passwordInput", magisterCredentials.password);
+        await page.click("#submitButton");
+        
+        await page.waitForSelector("#menu-agenda");
+        await page.click("#menu-agenda");
 
-    await page.waitForSelector("#afsprakenLijst");
+        await page.waitForSelector("#afsprakenLijst");
 
-    //clicking first lpu
-    for(let i = 0; i < LPUYPositions.length; i++){
+        //clicking first lpu
+        for(let i = 0; i < LPUYPositions.length; i++){
+            console.log();
+            console.log(`Loading ${i+1}th lpu register page`);
+            await openLPURegisterPage(page, LPUYPositions[i]);
+        
+            console.log(`Registering for the ${i+1}th lpu`)
+            await RegisterBottomLPU(page);
+        }
         console.log();
-        console.log(`Loading ${i+1}th lpu register page`);
-        await openLPURegisterPage(page, LPUYPositions[i]);
-    
-        console.log(`Registering for the ${i+1}th lpu`)
-        await RegisterBottomLPU(page);
+
+        console.log("Registered for all lpu's")
+
+        browser.close();
+
+        return true;
+    }catch{
+        return false;
     }
-    console.log();
-
-    console.log("Registered for all lpu's")
-
-    browser.close();
 }
 async function openLPURegisterPage(page, yPos){
     while(await page.url() === "https://uc.magister.net/magister/#/agenda"){
