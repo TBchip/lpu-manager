@@ -11,7 +11,7 @@ async function registerLPUs(LPUYPositions){
         });
         await page.goto("https://uc.magister.net/");
 
-        console.log("Loging in");
+        console.log("Loging in...");
         //username
         await page.waitForSelector("#username");
         await page.type("#username", magisterCredentials.username);
@@ -28,14 +28,12 @@ async function registerLPUs(LPUYPositions){
 
         //clicking first lpu
         for(let i = 0; i < LPUYPositions.length; i++){
-            console.log();
-            console.log(`Loading ${i+1}th lpu register page`);
+            console.log(`Loading ${i+1}th lpu register page...`);
             await openLPURegisterPage(page, LPUYPositions[i]);
         
-            console.log(`Registering for the ${i+1}th lpu`)
+            console.log(`Registering for the ${i+1}th lpu...`)
             await RegisterBottomLPU(page);
         }
-        console.log();
 
         console.log("Registered for all lpu's")
 
