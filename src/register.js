@@ -2,6 +2,7 @@ const puppeteer = require("puppeteer");
 const magisterCredentials = require("./magisterCredentials.json")
 
 async function registerLPUs(LPUYPositions){
+    const browser = await puppeteer.launch();
     try{
         console.log("t1");
         const browser = await puppeteer.launch();
