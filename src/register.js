@@ -1,19 +1,18 @@
 const puppeteer = require("puppeteer");
 const magisterCredentials = require("./magisterCredentials.json")
 
-async function registerLPUs(LPUYPositions){
-    const browser = await puppeteer.launch();
+async function registerLPUs(LPUYPositions, linux){
     try{
-        console.log("t1");
-        const browser = await puppeteer.launch();
-        console.log("t2");
+        if(linux === true)
+            const browser = await puppeteer.launch({executablePath: "/usr/bin/chromium-browser"});
+        else
+            const browser = await puppeteer.launch();
+
         const page = await browser.newPage();
-        console.log("t3");
         await page.setViewport({
             width: 1000,
             height: 1800
         });
-        console.log("t4");
         await page.goto("https://uc.magister.net/");
 
         console.log("Loging in...");
