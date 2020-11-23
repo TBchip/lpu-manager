@@ -3,7 +3,7 @@ const magisterCredentials = require("./magisterCredentials.json")
 
 async function registerLPUs(LPUYPositions){
     try{
-        const browser = await puppeteer.launch({product: 'chrome', executablePath: "/usr/bin/chromium-browser"});
+        const browser = await puppeteer.launch();
 
         const page = await browser.newPage();
         await page.setViewport({
