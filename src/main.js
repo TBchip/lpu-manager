@@ -26,20 +26,19 @@ async function registerLPUsAtTime(targetDay, targetHour, startMinute, endMinute)
             }else{
                 console.log("Failed to register");
             }
+            console.log();
         }
 
         //reset registered on last call
         if (new Date().getMinutes() === endMinute)
             registered = false;
-
-        console.log();
     });
 }
 
 
-LPUYPositions = [264, 776, 968, 1224, 1288, 1320];
-// LPUYPositions = [680]; 
+// LPUYPositions = [264, 776, 968, 1224, 1288, 1320];
+LPUYPositions = [872]; 
 // registerLPUs(LPUYPositions);
 
-registerLPUsAtTime(1, 9, 0, 30);
+registerLPUsAtTime(1, 12, 0, 59);
 
