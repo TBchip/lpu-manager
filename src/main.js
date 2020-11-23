@@ -19,7 +19,7 @@ async function registerLPUsAtTime(targetDay, targetHour, startMinute, endMinute)
         if(!registered){
             console.log("Trying to register...");
 
-            registered = await registerLPUs(LPUYPositions);
+            registered = await registerLPUs(LPUYPositions, true);
 
             if(registered){
                 console.log("Succesfully registered");
@@ -38,7 +38,7 @@ async function registerLPUsAtTime(targetDay, targetHour, startMinute, endMinute)
 
 // LPUYPositions = [264, 776, 968, 1224, 1288, 1320];
 LPUYPositions = [872]; 
-registerLPUs(LPUYPositions, true);
+// registerLPUs(LPUYPositions, true);
 
-// registerLPUsAtTime(1, 12, 0, 59);
+registerLPUsAtTime(1, 12, 0, 59);
 
