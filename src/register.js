@@ -1,13 +1,17 @@
 const puppeteer = require("puppeteer");
 const magisterCredentials = require("./magisterCredentials.json")
 
-async function registerLPUs(LPUYPositions){
+async function registerLPUs(LPUYPositions, linux){
     try{
-        const browser = await puppeteer.launch({
-            headless: true,
-            executablePath: '/usr/bin/chromium-browser',
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
-        });
+        if(linux)
+            const browser = await puppeteer.launch({
+                headless: true,
+                executablePath: '/usr/bin/chromium-browser',
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
+        else{
+            const browser = await puppeteer.launch();
+        }
 
         const page = await browser.newPage();
         await page.setViewport({
