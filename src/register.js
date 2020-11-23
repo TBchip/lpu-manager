@@ -3,12 +3,16 @@ const magisterCredentials = require("./magisterCredentials.json")
 
 async function registerLPUs(LPUYPositions){
     try{
+        console.log("t1");
         const browser = await puppeteer.launch();
+        console.log("t2");
         const page = await browser.newPage();
+        console.log("t3");
         await page.setViewport({
             width: 1000,
             height: 1800
         });
+        console.log("t4");
         await page.goto("https://uc.magister.net/");
 
         console.log("Loging in...");
