@@ -29,15 +29,18 @@ async function registerLPUs(LPUYPositions, linux){
         await page.waitForSelector("#menu-agenda");
         await page.click("#menu-agenda");
 
-        await page.waitForSelector("#afsprakenLijst");
-
         //clicking first lpu
         for(let i = 0; i < LPUYPositions.length; i++){
+            await page.waitForSelector("#afsprakenLijst");
+
             console.log(`Loading ${i+1}th lpu register page...`);
             await openLPURegisterPage(page, LPUYPositions[i]);
         
             console.log(`Registering for the ${i+1}th lpu...`)
             await RegisterBottomLPU(page);
+        
+            await page.waitForSelector("#menu-agenda");
+            await page.click("#menu-agenda");
         }
 
         console.log("Registered for all lpu's")
