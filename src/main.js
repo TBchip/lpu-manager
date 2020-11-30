@@ -45,5 +45,5 @@ LPUYPositions = [264, 776, 968, 1224, 1288, 1320];
 // LPUYPositions = [1096, 1128];
 // registerLPUs(LPUYPositions, true);
 
-registerLPUsAtTime(1, 9, 0, 59);
+registerLPUsAtTime(1, 9, 0, 30);
 
