@@ -2,8 +2,7 @@ const schedule = require('node-schedule');
 const { registerLPUs } = require("./register")
 
 
-async function registerLPUsAtTime(targetDay, targetHour, startMinute, endMinute){
-    
+async function registerLPUsAtTime(targetDay, targetHour, startMinute, endMinute){    
     let rule = new schedule.RecurrenceRule();
     rule.dayOfWeek = targetDay
     rule.hour = targetHour
@@ -15,8 +14,11 @@ async function registerLPUsAtTime(targetDay, targetHour, startMinute, endMinute)
     rule.minute = minutes;
 
     let registered = false;
+    let busy = false;
     let j = schedule.scheduleJob(rule, async function(){
-        if(!registered){
+        if(!busy && !registered){
+            busy = true;
+
             console.log("Trying to register...");
 
             registered = await registerLPUs(LPUYPositions, true);
@@ -27,6 +29,8 @@ async function registerLPUsAtTime(targetDay, targetHour, startMinute, endMinute)
                 console.log("Failed to register");
             }
             console.log();
+
+            busy = false;
         }
 
         //reset registered on last call
@@ -36,8 +40,9 @@ async function registerLPUsAtTime(targetDay, targetHour, startMinute, endMinute)
 }
 
 
-LPUYPositions = [264, 776, 968, 1224, 1288, 1320];
+// LPUYPositions = [264, 776, 968, 1224, 1288, 1320];
 // LPUYPositions = [872]; 
+LPUYPositions = [1096, 1128];
 // registerLPUs(LPUYPositions, true);
 
 registerLPUsAtTime(1, 9, 0, 30);

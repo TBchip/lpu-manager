@@ -3,11 +3,12 @@ const magisterCredentials = require("./magisterCredentials.json")
 
 async function registerLPUs(LPUYPositions, linux){
     try{
-        const browser = await puppeteer.launch({
-                headless: true,
-                executablePath: '/usr/bin/chromium-browser',
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
-            });
+        // const browser = await puppeteer.launch({
+        //         headless: true,
+        //         executablePath: '/usr/bin/chromium-browser',
+        //         args: ['--no-sandbox', '--disable-setuid-sandbox']
+        //     });
+        const browser = await puppeteer.launch();
 
         const page = await browser.newPage();
         await page.setViewport({
@@ -16,7 +17,7 @@ async function registerLPUs(LPUYPositions, linux){
         });
         await page.goto("https://uc.magister.net/");
 
-        console.log("Loging in...");
+        console.log("Logging in...");
         //username
         await page.waitForSelector("#username");
         await page.type("#username", magisterCredentials.username);
