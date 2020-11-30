@@ -40,9 +40,9 @@ async function registerLPUsAtTime(targetDay, targetHour, startMinute, endMinute)
 }
 
 
-// LPUYPositions = [264, 776, 968, 1224, 1288, 1320];
+LPUYPositions = [264, 776, 968, 1224, 1288, 1320];
 // LPUYPositions = [872]; 
-LPUYPositions = [1096, 1128];
+// LPUYPositions = [1096, 1128];
 // registerLPUs(LPUYPositions, true);
 
 registerLPUsAtTime(1, 9, 0, 59);
